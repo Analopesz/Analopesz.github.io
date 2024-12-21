@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lisboa - AnaVitória</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .music-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .music-image {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .music-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #000;
+        }
+
+        #lyrics {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        .lyric-line {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        audio {
+          
+            background-color: black;
+            color: white;
+        }
+
+        audio::-webkit-media-controls {
+            background-color: black !important;
+            color: white !important;
+        }
+
+        audio::-webkit-media-controls-play-button {
+            color: white;
+        }
+
+        audio::-webkit-media-controls-timeline {
+            background-color: white;
+        }
+
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-duration {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-container">
+        <h1 class="display-5">Lisboa - anavitória </h1>
+        <p class="lead">Clique na foto 👇</p>
+        <div class="music-image" onclick="toggleAudio()">
+            <img src="c:/Users/Ana Lívia/Downloads/WhatsApp Image 2024-12-21 at 14.26.14.jpeg" alt="Imagem Ana e Vitória">
+        </div>
+        <button class="btn btn-light mb-3" onclick="mostrarLetra()">mostrar letra 💢</button>
+        <div id="lyrics"></div>
+    </div>
+
+    <audio id="audio" src="c:/Users/Ana Lívia/Downloads/ssstik.io_1733370728391.mp3" type="audio/mpeg"></audio>
+    <script>
+        const letra = [
+            "Eu vejo tua cara e teu querer perverso",
+            "A gente fica bem aqui no chão da sala",
+            "Eu te queria a vida toda, te confesso",
+            "Por mim, a gente nem precisa mais da estrada"
+        ];
+
+        let indice = 0;
+
+        function mostrarLetra() {
+            if (indice < letra.length) {
+                const divLetra = document.getElementById('lyrics');
+                const linha = document.createElement('p');
+                linha.classList.add('lyric-line');
+                linha.textContent = letra[indice];
+                divLetra.appendChild(linha);
+                indice++;
+            } else {
+                alert("Toda a letra já foi exibida!");
+            }
+        }
+
+        const audio = document.getElementById('audio');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
